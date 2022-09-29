@@ -56,7 +56,7 @@ class ProgressBarService {
         }
 
         // Add header
-        imagettftext($canvas, 10*$dpiFactor, 0, 10*$dpiFactor, 20*$dpiFactor, $darkGrey, $fontBold, strtoupper($batch['name']) . ' - Statusa:');
+        imagettftext($canvas, 10*$dpiFactor, 0, 10*$dpiFactor, 20*$dpiFactor, $darkGrey, $fontBold, strtoupper($batch['name']) . ' - Status:');
         imagettftext($canvas, 7*$dpiFactor, 0, 10*$dpiFactor, 55*$dpiFactor, $darkGrey, $fontRegular, $batch['start']->format('d.m.Y') . ' bis ' . $batch['end']->format('d.m.Y') . $remainingDaysText);
 
         // Draw three rectangles each with its own color
