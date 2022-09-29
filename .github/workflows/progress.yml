@@ -1,0 +1,25 @@
+name: Generate progress bar images
+
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Run image generation
+        run: |
+          php generateProgressBars.php
+
+      - name: Deploy to github pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
