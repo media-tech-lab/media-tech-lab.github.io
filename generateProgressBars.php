@@ -80,7 +80,7 @@ class ProgressBarService {
             imagerectangle($canvas, ($i * 10 *$dpiFactor) + $spacing, 30*$dpiFactor, ($i * 10*$dpiFactor) + $spacing + $width, 40*$dpiFactor, $greenDark);
             $spacing = $spacing + (3 * $dpiFactor);
         }
-        imagepng($canvas, 'build/images/' . $batch['slug'] . '.png');
+        imagepng($canvas, 'build/images/progress-' . $batch['slug'] . '.png');
         imagedestroy($canvas);
     }
 }
