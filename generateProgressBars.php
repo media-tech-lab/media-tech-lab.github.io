@@ -5,10 +5,10 @@ class ProgressBarService {
 
     public function __construct($batches) {
         $this->batches = $batches;
-        if (!mkdir('build', 0755) && !is_dir('build')) {
+        if (!@mkdir('build', 0755) && !is_dir('build')) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', 'build'));
         }
-        if (!mkdir('build/images', 0755) && !is_dir('build/images')) {
+        if (!@mkdir('build/images', 0755) && !is_dir('build/images')) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', 'build/images'));
         }
     }
@@ -18,6 +18,9 @@ class ProgressBarService {
         foreach ($this->batches as $batch) {
             if ($now < $batch['start']) {
                 $progress = 0;
+                $remainingDays = 0;
+            } else if ($now > $batch['end']) {
+                $progress = 100;
                 $remainingDays = 0;
             } else {
                 $allDays = (int)$batch['end']->diff($batch['start'])->format("%a)");
@@ -65,10 +68,9 @@ class ProgressBarService {
         $blocks = 12;
         $blockIndex = $blocks/100;
         $rectangleWith = 10;
-        $rectangleIndex = $rectangleWith/100;
         for($i = 1; $i<=$blocks; $i++) {
             $blockProgress = $i / $blockIndex;
-            if ($progress > $blockProgress) {
+            if ($progress >= $blockProgress) {
                 // Paint half filled boxes
                 if ((int) floor($progress * $blockIndex) === $i) {
                     $fillWidth = ceil(($progress * $blockIndex - $i) * $rectangleWith);
@@ -80,6 +82,7 @@ class ProgressBarService {
             imagerectangle($canvas, ($i * 10 *$dpiFactor) + $spacing, 30*$dpiFactor, ($i * 10*$dpiFactor) + $spacing + $width, 40*$dpiFactor, $greenDark);
             $spacing = $spacing + (3 * $dpiFactor);
         }
+        imagettftext($canvas, 8*$dpiFactor, 0, 168*$dpiFactor, 39*$dpiFactor, $greenDark, $fontBold, floor($progress) . '%');
         imagepng($canvas, 'build/images/progress-' . $batch['slug'] . '.png');
         imagedestroy($canvas);
     }
