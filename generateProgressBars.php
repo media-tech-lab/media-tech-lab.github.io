@@ -68,12 +68,12 @@ class ProgressBarService {
         $blocks = 12;
         $blockIndex = $blocks/100;
         $rectangleWith = 10;
+        $progressIndex = $progress * $blockIndex;
         for($i = 1; $i<=$blocks; $i++) {
-            $blockProgress = $i / $blockIndex;
-            if ($progress >= $blockProgress) {
+            if (ceil($progressIndex) >= $i) {
                 // Paint half filled boxes
-                if ((int) floor($progress * $blockIndex) === $i) {
-                    $fillWidth = ceil(($progress * $blockIndex - $i) * $rectangleWith);
+                if ((int) ceil($progressIndex) === $i) {
+                    $fillWidth = ceil((($progress * $blockIndex) - ($i - 1)) * $rectangleWith);
                     imagefilledrectangle($canvas, ($i * 10 * $dpiFactor) + $spacing, 30 * $dpiFactor, ((($i - 1) * 10 * $dpiFactor) + $fillWidth * $dpiFactor) + $spacing + $width, 40 * $dpiFactor, $green);
                 } else {
                     imagefilledrectangle($canvas, ($i * 10 * $dpiFactor) + $spacing, 30 * $dpiFactor, ($i * 10 * $dpiFactor) + $spacing + $width, 40 * $dpiFactor, $green);
