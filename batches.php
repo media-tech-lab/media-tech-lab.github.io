@@ -17,5 +17,11 @@ $batches = [
         'slug' => 'batch-2',
         'start' => \DateTimeImmutable::createFromFormat('Y-m-d', '2022-10-17'),
         'end' => \DateTimeImmutable::createFromFormat('Y-m-d', '2023-04-17'),
+    ],
+    [
+        'name' => 'Batch 3',
+        'slug' => 'batch-3',
+        'start' => \DateTimeImmutable::createFromFormat('Y-m-d', '2023-02-13'),
+        'end' => \DateTimeImmutable::createFromFormat('Y-m-d', '2023-08-12'),
     ]
 ];
