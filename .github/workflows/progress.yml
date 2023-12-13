@@ -1,5 +1,6 @@
 name: Generate progress bar images
-
+permissions:
+  contents: write
 on:
   workflow_dispatch:
   schedule:
