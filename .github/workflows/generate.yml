@@ -18,9 +18,15 @@ jobs:
         with:
           ref: main
 
+      - uses: "ramsey/composer-install@v3"
+
       - name: Run image generation
         run: |
           php generateProgressBars.php
+
+      - name: Run image generation
+        run: |
+          php generateChangelog.php
 
       - name: Deploy to github pages
         uses: JamesIves/github-pages-deploy-action@v4
