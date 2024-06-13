@@ -55,6 +55,11 @@ foreach ($files as $file) {
 $layout = file_get_contents('resources/layout/changelog.html');
 $finalHtml = str_replace('###CONTENT###', $htmlContent, $layout);
 
+if (!file_exists('build/changelog')) {
+    if (!mkdir('build/changelog') && !is_dir('build/changelog')) {
+        throw new \RuntimeException(sprintf('Directory "%s" was not created', 'build/changelog'));
+    }
+}
 file_put_contents('build/changelog/index.html', $finalHtml);
 
 // Copy CSS

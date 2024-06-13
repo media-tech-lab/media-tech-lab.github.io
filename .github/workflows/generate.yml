@@ -24,7 +24,7 @@ jobs:
         run: |
           php generateProgressBars.php
 
-      - name: Run image generation
+      - name: Run changelog generation
         run: |
           php generateChangelog.php
 
