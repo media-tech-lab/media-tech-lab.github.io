@@ -1,4 +1,4 @@
-name: Generate progress bar images
+name: Generate github page and assets
 permissions:
   contents: write
 on:
