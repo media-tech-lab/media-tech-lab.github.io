@@ -1,0 +1,20 @@
+{
+    "name": "media-tech-lab/media-tech-lab.github.io",
+    "description": "The Media Tech Lab github website and actions",
+    "type": "project",
+    "require": {
+        "erusev/parsedown": "^1.7"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MediaTechLab\\MediaTechLabGithubIo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Martin Brüggemann",
+            "email": "beratung@brgmn.de"
+        }
+    ]
+}

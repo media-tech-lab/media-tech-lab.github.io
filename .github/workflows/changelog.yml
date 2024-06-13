@@ -1,0 +1,26 @@
+name: Generate changelog
+permissions:
+  contents: write
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Run image generation
+        run: |
+          php generateChangelog.php
+
+      - name: Deploy to github pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
