@@ -16,6 +16,8 @@ jobs:
         with:
           ref: main
 
+      - uses: "ramsey/composer-install@v3"
+
       - name: Run image generation
         run: |
           php generateChangelog.php
